@@ -38,6 +38,20 @@ function updateServers(templateXml) {
             keyXml.textContent = serverInput[key];
             serverXml.appendChild(keyXml);
         }
+	// todo really simplify this, using https://maven.apache.org/guides/mini/guide-http-settings.html#Connection_Timeouts
+        var configXml = templateXml.createElement('configuration');
+        var httpConfXml = templateXml.createElement('httpConfiguration');
+        var allXml = templateXml.createElement('all');
+        var connTimeoutXml = templateXml.createElement('connectionTimeout');
+        var readTimeoutXml = templateXml.createElement('readTimeout');
+        connTimeoutXml.textContent = "10000";
+        readTimeoutXml.textContent = "10000";
+        allXml.appendChild(connTimeoutXml);
+        allXml.appendChild(readTimeoutXml);
+        httpConfXml.appendChild(allXml);
+        configXml.appendChild(httpConfXml);
+        serverXml.appendChild(configXml);
+
         serversXml.appendChild(serverXml);
     });
 
