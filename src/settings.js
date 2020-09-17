@@ -40,16 +40,20 @@ function updateServers(templateXml) {
         }
 	// todo really simplify this, using https://maven.apache.org/guides/mini/guide-http-settings.html#Connection_Timeouts
         var configXml = templateXml.createElement('configuration');
-        var httpConfXml = templateXml.createElement('httpConfiguration');
-        var allXml = templateXml.createElement('all');
-        var connTimeoutXml = templateXml.createElement('connectionTimeout');
-        var readTimeoutXml = templateXml.createElement('readTimeout');
-        connTimeoutXml.textContent = "10000";
-        readTimeoutXml.textContent = "10000";
-        allXml.appendChild(connTimeoutXml);
-        allXml.appendChild(readTimeoutXml);
-        httpConfXml.appendChild(allXml);
-        configXml.appendChild(httpConfXml);
+       // var httpConfXml = templateXml.createElement('httpConfiguration');
+       // var allXml = templateXml.createElement('all');
+       // var connTimeoutXml = templateXml.createElement('connectionTimeout');
+       // var readTimeoutXml = templateXml.createElement('readTimeout');
+       // connTimeoutXml.textContent = "10000";
+       // readTimeoutXml.textContent = "10000";
+       // allXml.appendChild(connTimeoutXml);
+       // allXml.appendChild(readTimeoutXml);
+       // httpConfXml.appendChild(allXml);
+       // configXml.appendChild(httpConfXml);
+        // older style
+        var timeoutXml = templateXml.createElement('timeout');
+        timeoutXml.textContent = "10000";
+        configXml.appendChild(timeoutXml);
         serverXml.appendChild(configXml);
 
         serversXml.appendChild(serverXml);
